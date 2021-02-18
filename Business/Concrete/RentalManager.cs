@@ -21,6 +21,11 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
+            var controller = _rentalDal.GetAll(p => p.CarId == rental.CarId).Find(p => p.ReturnDate == null);
+            if (controller != null)
+            {
+                return new ErrorResult(Messages.RentalCarInvalid);
+            }
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);
         }
