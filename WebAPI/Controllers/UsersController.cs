@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
             _userService = userService;
         }
 
-        [HttpPut("Add")]
+        [HttpPost]
         public IActionResult Add(User user)
         {
             var result = _userService.Add(user);
@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPut("Update")]
+        [HttpPut]
         public IActionResult Update(User user)
         {
             var result = _userService.Update(user);

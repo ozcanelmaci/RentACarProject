@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
             _colorService = colorService;
         }
 
-        [HttpPut("Add")]
+        [HttpPost]
         public IActionResult Add(Color color)
         {
             var result = _colorService.Add(color);
@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPut("Update")]
+        [HttpPut]
         public IActionResult Update(Color color)
         {
             var result = _colorService.Update(color);

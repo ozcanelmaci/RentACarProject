@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
             _rentalService = rentalService;
         }
 
-        [HttpPut("Add")]
+        [HttpPost]
         public IActionResult Add(Rental rental)
         {
             var result = _rentalService.Add(rental);
@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPut("Update")]
+        [HttpPut]
         public IActionResult Update(Rental rental)
         {
             var result = _rentalService.Update(rental);
