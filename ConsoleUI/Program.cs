@@ -2,6 +2,7 @@
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Core.Entities.Concrete;
 using System;
 
 namespace ConsoleUI
@@ -91,51 +92,51 @@ namespace ConsoleUI
             }
         }
 
-        private static void UserTest()
-        {
-            UserManager userManager = new UserManager(new EfUserDal());
+        //private static void UserTest()
+        //{
+        //    UserManager userManager = new UserManager(new EfUserDal());
 
-            var result1 = userManager.Add(new User
-            {
-                Id = 1,
-                FirstName = "Özcan",
-                LastName = "Elmacı",
-                Email = "oz.ozcan.elmaci55@gmail.com",
-                Password = 000000
-            });
-            var result2 = userManager.Add(new User
-            {
-                Id = 2,
-                FirstName = "User2",
-                LastName = "Last2",
-                Email = "Email2",
-                Password = 22222
-            });
-            var result3 = userManager.Add(new User
-            {
-                Id = 3,
-                FirstName = "User3",
-                LastName = "Last3",
-                Email = "Email3",
-                Password = 33333
-            });
-            var result4 = userManager.Add(new User
-            {
-                Id = 4,
-                FirstName = "User4",
-                LastName = "Last4",
-                Email = "Email4",
-                Password = 44444
-            });
-            Console.WriteLine(result1.Message);
-            Console.WriteLine(result2.Message);
-            Console.WriteLine(result3.Message);
-            Console.WriteLine(result4.Message);
-            foreach (var user in userManager.GetAll().Data)
-            {
-                Console.WriteLine(user.FirstName + " " + user.LastName);
-            }
-        }
+        //    var result1 = userManager.Add(new User
+        //    {
+        //        Id = 1,
+        //        FirstName = "Özcan",
+        //        LastName = "Elmacı",
+        //        Email = "oz.ozcan.elmaci55@gmail.com",
+        //        Password = 000000
+        //    });
+        //    var result2 = userManager.Add(new User
+        //    {
+        //        Id = 2,
+        //        FirstName = "User2",
+        //        LastName = "Last2",
+        //        Email = "Email2",
+        //        Password = 22222
+        //    });
+        //    var result3 = userManager.Add(new User
+        //    {
+        //        Id = 3,
+        //        FirstName = "User3",
+        //        LastName = "Last3",
+        //        Email = "Email3",
+        //        Password = 33333
+        //    });
+        //    var result4 = userManager.Add(new User
+        //    {
+        //        Id = 4,
+        //        FirstName = "User4",
+        //        LastName = "Last4",
+        //        Email = "Email4",
+        //        Password = 44444
+        //    });
+        //    Console.WriteLine(result1.Message);
+        //    Console.WriteLine(result2.Message);
+        //    Console.WriteLine(result3.Message);
+        //    Console.WriteLine(result4.Message);
+        //    foreach (var user in userManager.GetAll().Data)
+        //    {
+        //        Console.WriteLine(user.FirstName + " " + user.LastName);
+        //    }
+        //}
 
         private static void BrandTest()
         {
