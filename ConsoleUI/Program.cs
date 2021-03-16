@@ -11,7 +11,7 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //CarTest1();
+            CarTest1();
 
             //CarTest2();
 
@@ -23,7 +23,7 @@ namespace ConsoleUI
 
             //CustomerTest();
 
-            RentalTest();
+            //RentalTest();
         }
 
         private static void RentalTest()
@@ -216,7 +216,7 @@ namespace ConsoleUI
 
             foreach (var car in carManager.GetCarDetails().Data)
             {
-                Console.WriteLine("Araba Adı : " + car.CarName + "\nAraba rengi : " + car.ColorName +
+                Console.WriteLine("Araba Adı : " + car.Description + "\nAraba rengi : " + car.ColorName +
                     "\nAraba Markası : " + car.BrandName + "\nGünlük Fiyatı : " + car.DailyPrice + "$");
             }
         }
