@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="CrossCuttingConcerns\Caching\Redis\" />
+    <Folder Include="Utilities\Helpers\" />
   </ItemGroup>
 
 </Project>

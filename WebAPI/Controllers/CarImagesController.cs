@@ -1,9 +1,11 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,17 +15,42 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CarImagesController : ControllerBase
     {
+        public static IWebHostEnvironment _webHostEnvironment;
+
         ICarImageService _carImageService;
 
-        public CarImagesController(ICarImageService carImageService)
+        public CarImagesController(ICarImageService carImageService, IWebHostEnvironment webHostEnvironment)
         {
             _carImageService = carImageService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpPost]
         public IActionResult Add([FromForm(Name = ("Image"))] IFormFile file, [FromForm] CarImage carImage)
         {
-            var result = _carImageService.Add(file,carImage);
+            string path = _webHostEnvironment.WebRootPath + "\\Image\\";
+            var newGuidPath = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            using (FileStream fileStream = System.IO.File.Create(path + newGuidPath))
+            {
+                file.CopyTo(fileStream);
+                fileStream.Flush();
+            }
+            if (file == null)
+            {
+                carImage.ImagePath = path + "default.png";
+            }
+            var result = _carImageService.Add(new CarImage
+            {
+                CarId = carImage.CarId,
+                Date = DateTime.Now,
+                ImagePath = newGuidPath
+            });
             if (result.Success)
             {
                 return Ok(result);
@@ -32,27 +59,26 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update([FromForm(Name = ("Image"))] IFormFile file, [FromForm(Name = ("Id"))] int Id)
+        public IActionResult Update(CarImage carImage)
         {
-            var carImage = _carImageService.GetById(Id).Data;
-            var result = _carImageService.Update(file, carImage);
+            var result = _carImageService.Update(carImage);
             if (result.Success)
             {
                 return Ok(result);
             }
-            return BadRequest(result);
+            return BadRequest(result.Message);
         }
 
         [HttpDelete]
-        public IActionResult Delete([FromForm(Name = ("Id"))] int Id)
+        public IActionResult Delete(CarImage carImage)
         {
-            var carImage = _carImageService.GetById(Id).Data;
             var result = _carImageService.Delete(carImage);
             if (result.Success)
             {
                 return Ok(result);
             }
-            return BadRequest(result);
+            return BadRequest(result.Message);
+
         }
 
         [HttpGet("GetAll")]

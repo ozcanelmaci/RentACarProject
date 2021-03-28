@@ -64,7 +64,7 @@ namespace ConsoleUI
 
             foreach (var rental in rentalManager.GetRentalDetails().Data)
             {
-                Console.WriteLine("Kiralanan araç adı : " + rental.CarName + "\nKiralayanın adı-soyadı : " +
+                Console.WriteLine("Kiralanan araç adı : " + rental.BrandName + "\nKiralayanın adı-soyadı : " +
                     rental.CustomerFirstName + " " + rental.CustomerLastName + "\nKiralama Tarihi : " + rental.RentDate);
                 if (rental.ReturnDate == null)
                 {
