@@ -80,7 +80,7 @@ namespace Business.Concrete
 
         private List<CarImage> CheckIfImageOfAnyCarExists(int carId)
         {
-            var DefaultPath = AppDomain.CurrentDomain.BaseDirectory + "C:\\Users\\ozozc\\source\\repos\\RentACarProject\\WebAPI\\wwwroot\\Image\\logo.jpg";
+            var DefaultPath = "logo.jpg";
             var result = _carImageDal.GetAll(p => p.CarId == carId).Any();
             if (!result)
             {

@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public IActionResult Add([FromForm(Name = ("Image"))] IFormFile file, [FromForm] CarImage carImage)
         {
             string path = _webHostEnvironment.WebRootPath + "\\Image\\";
@@ -58,7 +58,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPut]
+        [HttpPost("update")]
         public IActionResult Update(CarImage carImage)
         {
             var result = _carImageService.Update(carImage);
@@ -69,7 +69,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpDelete]
+        [HttpPost("delete")]
         public IActionResult Delete(CarImage carImage)
         {
             var result = _carImageService.Delete(carImage);

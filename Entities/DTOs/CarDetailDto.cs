@@ -7,7 +7,7 @@ namespace Entities.DTOs
 {
     public class CarDetailDto : IDto
     {
-        public int CarId { get; set; }
+        public int Id { get; set; }
         public int ModelYear { get; set; }
         public short DailyPrice { get; set; }
         public string Description { get; set; }

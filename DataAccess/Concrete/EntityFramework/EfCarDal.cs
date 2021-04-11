@@ -26,7 +26,7 @@ namespace DataAccess.Concrete.EntityFramework
                              orderby ca.Id
                              select new CarDetailDto 
                              {
-                                 CarId = ca.Id,
+                                 Id = ca.Id,
                                  ModelYear = ca.ModelYear,
                                  DailyPrice = ca.DailyPrice,
                                  Description = ca.Description,
